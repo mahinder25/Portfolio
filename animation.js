@@ -33,7 +33,7 @@ window.addEventListener("load", () => {
             scrollTrigger: {
                 trigger: card,
                 start: "top 85%",
-                toggleActions: "play reverse play reverse",
+                toggleActions: "play none none none",
                 // markers:true,
             }
         });
@@ -43,7 +43,7 @@ window.addEventListener("load", () => {
     document.querySelectorAll(".bigText").forEach((text) => {
         const tl = gsap.timeline({
             scrollTrigger: {
-                trigger: text, start: "top 80%", toggleActions: "play reverse play reverse", // markers: true 
+                trigger: text, start: "top 80%", toggleActions: "play none none none", // markers: true 
             }
         }); tl.from(text.querySelector("span"), { y: "100%", duration: 1.1, ease: "power4.out" });
     });
@@ -52,14 +52,14 @@ window.addEventListener("load", () => {
     document.querySelectorAll(".heading").forEach((text) => {
         const tl = gsap.timeline({
             scrollTrigger: {
-                trigger: text, start: "top 85%", toggleActions: "play reverse play reverse",// markers: true
+                trigger: text, start: "top 85%", toggleActions: "play none none none",// markers: true
             }
         }); tl.from(text.querySelector("span"), { y: "100%", duration: 1.1, ease: "power4.out" });
     });
     document.querySelectorAll(".subHeading").forEach((text) => {
         const tl = gsap.timeline({
             scrollTrigger: {
-                trigger: text, start: "top 85%", toggleActions: "play reverse play reverse",// markers: true
+                trigger: text, start: "top 85%", toggleActions: "play none none none",// markers: true
             }
         }); tl.from(text.querySelector("span"), { y: "100%", duration: 1.1, ease: "power4.out" });
     });
@@ -68,7 +68,7 @@ window.addEventListener("load", () => {
     document.querySelectorAll(".para-reveal").forEach((text) => {
         const tl = gsap.timeline({
             scrollTrigger: {
-                trigger: text, start: "top 85%", toggleActions: "play reverse play reverse",// markers: true
+                trigger: text, start: "top 85%", toggleActions: "play none none none",// markers: true
             }
         }); tl.from(text.querySelector("span"), { y: "100%", duration: 1.1, ease: "power4.out" });
     });
