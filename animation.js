@@ -156,3 +156,9 @@ document.addEventListener('click', (e) => {
         menu.classList.remove('active');
     }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("img:not([loading])").forEach(img => {
+        img.setAttribute("loading", "lazy");
+    });
+});
