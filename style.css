@@ -441,12 +441,14 @@ button.btn:hover {
     --section3-bg: linear-gradient(97.68deg, #CC2B5E 0%, rgba(102, 45, 140, 0.8) 100%);
     --section4-bg: linear-gradient(97.68deg, #F8EB9F 0%, #C99828 100%);
     --section6-bg: linear-gradient(97.68deg, #31A159 0%, #133D20 100%);
-    --section5-bg: radial-gradient(#18FF69 5%, #133D20 100%);
+    --section5-bg: radial-gradient(#3B9C5D 100%, #1D6E37 100%);
+    --section7-bg: #1A1919;
     --section1-heading-color: #CABBFD;
     --section2-heading-color: #003845;
     --section3-heading-color: #FDBBD4;
     --section4-heading-color: #572A0C;
     --section5-heading-color: #7AE695;
+    --section7-heading-color: #A689FF;
     --section1-para-color: #E4DCFF;
     --section2-para-color: #001E24;
     --section3-para-color: #FBE6EE;
@@ -584,7 +586,7 @@ button.btn:hover {
     animation: blink 0.5s ease;
 }
 
-.card ul li img{
+.card ul li img {
     width: var(--font-size-18);
 }
 
@@ -895,9 +897,64 @@ button.btn:hover {
 
 @media screen and (min-width:576px) {
     .vaulta_img {
-        width: 85%;
+        width: 70%;
     }
 }
+
+/* Youvati starts */
+.youvati {
+    background-color: var(--section7-bg);
+    height: 100%;
+    margin-top: 5.125rem;
+    padding: var(--font-size-24) 0;
+}
+
+.youvati-content-section .heading {
+    --main-heading: #A689FF;
+}
+
+.youvati-content-section .heading {
+    color: var(--main-heading);
+}
+
+.youvati-content-section p {
+    font-size: calc(var(--font-size-12) * 2);
+}
+
+.youvati-content-section .intro_content_actions a {
+    background-color: #1a1919;
+}
+
+.youvati .coming-soon {
+    top: 0;
+    left: 5%;
+    text-align: start;
+}
+
+.youvati .coming-soon h3 span {
+    color: #CBBBFD;
+    font-size: calc(var(--font-size-10) * 2);
+}
+
+.youvati .coming-soon h1 {
+    font-size: var(--font-size-16);
+}
+
+@media screen and (min-width:576px) {
+    .youvati .coming-soon {
+        top: 10%;
+    }
+
+    .youvati .coming-soon h3 span {
+        font-size: calc(var(--font-size-14) * 2);
+    }
+
+    .youvati .coming-soon h1 {
+        font-size: var(--font-size-20);
+    }
+}
+
+/* Youvati ends */
 
 /* Animations */
 /* Spin Animation */
