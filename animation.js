@@ -1,5 +1,35 @@
 window.addEventListener("load", () => {
+    const loader = document.getElementById("loader");
 
+    if (loader) {
+        setTimeout(() => {
+            loader.style.opacity = "0";
+
+            setTimeout(() => {
+                loader.style.display = "none";
+
+                // 🔥 Important: refresh GSAP after loader disappears
+                if (typeof ScrollTrigger !== "undefined") {
+                    ScrollTrigger.refresh();
+                }
+
+            }, 300); // match fade-out transition
+        }, 1000);
+    }
+    const loaderContainer = document.getElementById("lottie-loader");
+
+    const animation = lottie.loadAnimation({
+        container: loaderContainer,
+        renderer: "svg",
+        loop: true,
+        autoplay: true,
+        path: "./Loader.json"
+    });
+
+    // TEMP: keep loader visible for 3 seconds
+    setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+    }, 1000);
     // ✅ AOS (only if loaded)
     if (typeof AOS !== "undefined") {
         AOS.init();
@@ -73,92 +103,100 @@ window.addEventListener("load", () => {
         }); tl.from(text.querySelector("span"), { y: "100%", duration: 1.1, ease: "power4.out" });
     });
 
-    document.querySelector('a[href="#myworks"]').addEventListener('click', function (e) {
-        e.preventDefault();
+    const myWorksLink = document.querySelector('a[href="#myworks"]');
 
-        gsap.to(window, {
-            duration: 1,
-            scrollTo: {
-                y: "#myworks",
-                offsetY: 100 // adjust based on navbar height
-            },
-            ease: "power2.out"
-        });
-    });
-    document.querySelector('a[href="#contact"]').addEventListener('click', function (e) {
-        e.preventDefault();
-
-        gsap.to(window, {
-            duration: 1,
-            scrollTo: {
-                y: "#contact",
-                offsetY: 100 // adjust based on navbar height
-            },
-            ease: "power2.out"
-        });
-    });
-});
-
-// Mobile Navigation Menu Toggle
-document.addEventListener("DOMContentLoaded", function () {
-    const btn = document.getElementById("hamburgerBtn");
-    const menu = document.querySelector('.mob_menu .mob_nav_menu');
-    const icon = btn.querySelector('i');
-
-    btn.addEventListener('click', () => {
-        menu.classList.toggle('active');
-
-        // Toggle icon
-        if (menu.classList.contains('active')) {
-            icon.classList.remove('bi-list');
-            icon.classList.add('bi-x');
-        } else {
-            icon.classList.remove('bi-x');
-            icon.classList.add('bi-list');
-        }
-    });
-});
-
-const menu = document.querySelector('.mob_menu .mob_nav_menu');
-const links = document.querySelectorAll('.mob_nav_menu a');
-
-links.forEach(link => {
-    link.addEventListener('click', function (e) {
-        const target = this.getAttribute('href');
-
-        // Only handle internal links
-        if (target.startsWith("#")) {
+    if (myWorksLink) {
+        myWorksLink.addEventListener('click', function (e) {
             e.preventDefault();
 
-            // 1️⃣ Close menu FIRST
-            menu.classList.remove('active');
+            gsap.to(window, {
+                duration: 1,
+                scrollTo: {
+                    y: "#myworks",
+                    offsetY: 100
+                },
+                ease: "power2.out"
+            });
+        });
+    }
 
-            // 2️⃣ Wait for menu close animation (if any)
-            setTimeout(() => {
-                gsap.to(window, {
-                    duration: 0.7,
-                    scrollTo: {
-                        y: target,
-                        offsetY: 80
-                    },
-                    ease: "power2.out"
-                });
-            }, 300); // match your menu animation time
-        } else {
-            // For normal pages like /about.html
-            menu.classList.remove('active');
-        }
-    });
-});
+    const contactLink = document.querySelector('a[href="#contact"]');
 
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.mob_menu')) {
-        menu.classList.remove('active');
+    if (contactLink) {
+        contactLink.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            gsap.to(window, {
+                duration: 1,
+                scrollTo: {
+                    y: "#contact",
+                    offsetY: 100
+                },
+                ease: "power2.out"
+            });
+        });
     }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
+
+    const btn = document.getElementById("hamburgerBtn");
+    const menu = document.querySelector('.mob_menu .mob_nav_menu');
+    const links = document.querySelectorAll('.mob_nav_menu a');
+
+    // ✅ Safety checks
+    if (!menu) return;
+
+    // Toggle button
+    if (btn) {
+        const icon = btn.querySelector('i');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('active');
+
+            if (icon) {
+                icon.classList.toggle('bi-list');
+                icon.classList.toggle('bi-x');
+            }
+        });
+    }
+
+    // Menu link click
+    links.forEach(link => {
+        link.addEventListener('click', function (e) {
+            const target = this.getAttribute('href');
+
+            if (target && target.startsWith("#")) {
+                e.preventDefault();
+
+                menu.classList.remove('active');
+
+                setTimeout(() => {
+                    gsap.to(window, {
+                        duration: 0.7,
+                        scrollTo: {
+                            y: target,
+                            offsetY: 80
+                        },
+                        ease: "power2.out"
+                    });
+                }, 300);
+            } else {
+                menu.classList.remove('active');
+            }
+        });
+    });
+
+    // Click outside closes menu
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.mob_menu')) {
+            menu.classList.remove('active');
+        }
+    });
+
+    // Lazy loading images
     document.querySelectorAll("img:not([loading])").forEach(img => {
         img.setAttribute("loading", "lazy");
     });
+
 });
